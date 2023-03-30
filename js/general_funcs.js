@@ -32,9 +32,9 @@ function setWasSel(item){
   item.wasSel = true;
 }
 
-function displayTestResult(questionDetails){
+function displayTestResult(questionDetails, el){
   let resultText = "1st: " + questionDetails.first_place_item.name + ", " + "2nd: " + questionDetails.second_place_item.name + ", " + "3rd: " + questionDetails.third_place_item.name;
-  $('#prac-result-data').text(resultText);
+  $(el).text(resultText);
 }
 
 
@@ -51,6 +51,40 @@ function resetWasSelOnQuestionItems(questionItems) {
   }
 }
 
+// The Fisher Yates Method
+function shuffle(ary) {
+  for (let i = ary.length -1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i+1));
+    let k = ary[i];
+    ary[i] = ary[j];
+    ary[j] = k;
+  }
+  ary
+}
+
+function set_question_groups_for_round(round, items) {
+  shuffle(items);
+  for (let i = 0; i < items.length; i+=3) {
+    round.question_groups.push( [items[i], items[i + 1], items[i + 2]] );
+    items[i].seen_items.push(items[i + 1]);
+    items[i].seen_items.push(items[i + 2]);
+    items[i + 1].seen_items.push(items[i]);
+    items[i + 1].seen_items.push(items[i + 2]);
+    items[i + 2].seen_items.push(items[i]);
+    items[i + 2].seen_items.push(items[i + 1]);
+  }
+}
+
+function populateQuestionButtons(round) {
+  $('.test-question-btn').each(function(index){
+    $(this).html(round.question_groups[round.round_counter][index].name);
+    $(this).attr("data-id", round.question_groups[round.round_counter][index].id);
+  });
+  round.round_counter++;
+}
+
+
+
 
 
 
@@ -63,30 +97,6 @@ function adjustWeightForPick(counter, item) {
     item.weightedVal += 100;
   } else if(counter == 2){
     //noop
-  }
-}
-
-function adjustTestRankForPick(counter, item) {
-  if(counter == 1){
-    item.testRank = 1;
-  } else if(counter == 2){
-  }
-  item.testRank = 2;
-}
-
-function adjustWeightThirdPlace(ary) {
-  for (let i in ary) {
-    if(ary[i].wasSel == false){
-      ary[i].weightedVal -= 10;
-    }
-  }
-}
-
-function adjustTestRankThirdPlace(ary) {
-  for (let i in ary) {
-    if(ary[i].wasSel == false){
-      ary[i].testRank = 3;
-    }
   }
 }
 
