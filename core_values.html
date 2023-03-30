@@ -11,14 +11,14 @@
   <script type="text/javascript" src="js/prog_data.js"></script>
   <script type="text/javascript" src="js/general_funcs.js"></script>
   <script type="text/javascript" src="js/root_logic.js"></script>
-
-
 </head>
 <body>
 
-
-  <div id="welcome-practice">
   <div class="container">
+
+
+
+    <div id="welcome-practice">
       <h1 class="text-primary">A Test to Rank Your Core Values</h1>
       <p>This test takes about 15 minutes to complete. The format of the questions is simple:</p>
       <ul>
@@ -32,23 +32,23 @@
           <h3 class="text-center" id="prac-prompt">Pick Your Favorite From the Listed 3 Items</h3>
 
           <div class="row">
-            <div class="col prac-question text-center">
-              <button type="button" class="btn btn-success" data-id="997">
+            <div class="col prac-btn-wrapper text-center">
+              <button type="button" class="btn btn-success prac-question-btn" data-id="997">
                 Vanilla Ice Cream
               </button>
             </div>
-            <div class="col prac-question text-center">
-              <button type="button" class="btn btn-success" data-id="998">Chocolate Ice Cream</button>
+            <div class="col prac-btn-wrapper text-center">
+              <button type="button" class="btn btn-success prac-question-btn" data-id="998">Chocolate Ice Cream</button>
             </div>
-            <div class="col  prac-question text-center">
-              <button type="button" class="btn btn-success" data-id="999">Strawberry Ice Cream</button>
+            <div class="col prac-btn-wrapper text-center">
+              <button type="button" class="btn btn-success prac-question-btn" data-id="999">Strawberry Ice Cream</button>
             </div>
           </div>
 
           <div class="d-none" id="prac-result">
             <p>
               <strong>Question Results</strong>
-              <button type="button" class="btn btn-primary btn-sm" id="pracRestartQuestion">
+              <button type="button" class="btn btn-primary btn-sm" id="prac-restart-question">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
   <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
@@ -56,22 +56,62 @@
                 Redo Question
               </button>
             </p>
-            <p id='prac-result-data'></p>
+            <p id="prac-result-data"></p>
           </div>
 
         </div>
       </div>
-    </div>
-  </div> <!-- welcome-practice -->
+
+      <br>
+      <div class="row">
+        <div class="text-center">
+          <button type="button" class="btn btn-lg btn-primary" id="beginTest">Begin Test</button>
+        </div>
+      </div>
+    </div> <!-- welcome-practice -->
 
 
-  <br>
-  <div class="row">
-    <div class="text-center">
-      <button type="button" class="btn btn-lg btn-primary">Begin Test</button>
-    </div>
-  </div>
+
+    <div id="coreRankTestWrapper" class="d-none">
+      <h1 class="text-primary">A Test to Rank Your Core Values</h1>
+      <div class="card bg-light text-dark">
+        <div class="card-header"><h2></h2></div>
+        <div class="card-body">
+
+          <h3 class="text-center" id="test-question-prompt">Pick Your Favorite From the Listed 3 Items</h3>
+
+          <div class="row">
+            <div class="col test-question-item-wrapper text-center">
+              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            </div>
+            <div class="col test-question-item-wrapper text-center">
+              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            </div>
+            <div class="col test-question-item-wrapper text-center">
+              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            </div>
+          </div>
+
+          <div class="d-none" id="test-question-result">
+            <p>
+              <strong>Question Results</strong>
+              <button type="button" class="btn btn-primary btn-sm" id="test-question-restart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-counterclockwise" viewBox="0 0 16 16">
+    <path fill-rule="evenodd" d="M8 3a5 5 0 1 1-4.546 2.914.5.5 0 0 0-.908-.417A6 6 0 1 0 8 2v1z"/>
+    <path d="M8 4.466V.534a.25.25 0 0 0-.41-.192L5.23 2.308a.25.25 0 0 0 0 .384l2.36 1.966A.25.25 0 0 0 8 4.466z"/>
+    </svg>
+                Redo Question
+              </button>
+            </p>
+            <p id="test-question-result-data"></p>
+          </div>
+
+        </div>
+      </div>
+    </div> <!-- coreRankTestWrapper -->
 
 
+
+  </div> <!-- container -->
 </body>
 </html>
