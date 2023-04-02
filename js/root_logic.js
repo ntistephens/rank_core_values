@@ -1,23 +1,20 @@
 $(document).ready(function(){
 
-set_question_groups_for_round(round_one, all_items);
+set_question_groups_for_round_one(round, all_items);
 
 $('.prac-question-btn').on('click', function(){
   $(this).closest('.prac-btn-wrapper').addClass("d-none");
-  questionPickCounterPlusPlus(questionDetails);
   var foundItem = findById($(this).attr("data-id"), pracQuestionItems);
   setQuestionFirstOrSecondPlace(foundItem, questionDetails);
   setWasSel(foundItem);
 
-  if (questionDetails.questionPickCounter == 1) {
+  if (questionDetails.questionPickCounter == 0) {
+    questionPickCounterPlusPlus(questionDetails);
     $('#prac-prompt').text("Now Pick Your Favorite From the Remaining 2 Items");
-  } else if (questionDetails.questionPickCounter == 2) {
+  } else if (questionDetails.questionPickCounter == 1) {
     // no more picks needed for question, so go ahead and hide all (only 3rd item remains at this point)
     $('.prac-btn-wrapper').addClass("d-none");
     // BOTH 1st and 2nd picks were already made by the user
-    // This leaves the remaining 3rd place which we proceed to set so the user doesn't have to manually click it.
-    // For good measuure, virtually ++ the pick counter
-    questionPickCounterPlusPlus(questionDetails);
     setQuestionThirdPlace(pracQuestionItems, questionDetails);
     $('#prac-prompt').addClass("d-none");
     $('#prac-result').removeClass('d-none');
@@ -39,7 +36,7 @@ $('#prac-restart-question').on('click', function(){
 
 $('#beginTest').on('click', function(){
   resetQuestionDetails(questionDetails);
-  populateQuestionButtons(round_one);
+  populateQuestionButtons(round);
   $('#welcome-practice').addClass('d-none');
   $('#coreRankTestWrapper').removeClass('d-none');
 });
@@ -47,37 +44,54 @@ $('#beginTest').on('click', function(){
 
 $('.test-question-btn').on('click', function(){
   $(this).closest('.test-question-item-wrapper').addClass("d-none");
-  questionPickCounterPlusPlus(questionDetails);
   var foundItem = findById($(this).attr("data-id"), all_items);
   setQuestionFirstOrSecondPlace(foundItem, questionDetails);
   setWasSel(foundItem);
 
-  if (questionDetails.questionPickCounter == 1) {
+  if (questionDetails.questionPickCounter == 0) {
+    questionPickCounterPlusPlus(questionDetails);
     $('#test-question-prompt').text("Now Pick Your Favorite From the Remaining 2 Items");
-  } else if (questionDetails.questionPickCounter == 2) {
+  } else if (questionDetails.questionPickCounter == 1) {
     // no more picks needed for question, so go ahead and hide all (only 3rd item remains at this point)
     $('.test-question-item-wrapper').addClass("d-none");
     // BOTH 1st and 2nd picks were already made by the user
     // This leaves the remaining 3rd place which we proceed to set so the user doesn't have to manually click it.
-    // For good measuure, virtually ++ the pick counter
-    questionPickCounterPlusPlus(questionDetails);
-    setQuestionThirdPlace(round_one.question_groups[round_one.round_counter], questionDetails);
-    $('#test-question-prompt').addClass("d-none");
-    $('#test-question-result').removeClass('d-none');
-    displayTestResult(questionDetails, $('#test-question-result-data'));
+    setQuestionThirdPlace(round.question_groups[round.question_group_counter], questionDetails);
+    processDisplayQuestionResults();
   }
 });
 
 
 $('#test-question-restart').on('click', function(){
+  $('#test-question-continue').addClass('d-none');
   resetQuestionDetails(questionDetails);
-  resetWasSelOnQuestionItems(pracQuestionItems);
+  resetWasSelOnQuestionItems(round.question_groups[round.question_group_counter]);
+  $('.question-result-data').text("");
+  $('#test-question-result').addClass('d-none');
+  $('.test-question-item-wrapper').removeClass('d-none');
+  $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
+  $('#test-question-prompt').removeClass("d-none");
+});
+
+
+$('#test-question-continue').on('click', function(){
+  $('#test-question-continue').addClass('d-none');
+
+  save_question_answer(questionDetails);
+
+  resetQuestionDetails(questionDetails);
+  resetWasSelOnQuestionItems(round.question_groups[round.question_group_counter]);
+
+  roundCounterPlusPlus(round);
+  populateQuestionButtons(round);
+
   $('.question-result-data').text("");
   $('#test-question-result').addClass('d-none');
   $('.test-question-item-wrapper').removeClass('d-none');
   $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
   $('#test-question-prompt').removeClass("d-none");
 
+  update_value_rankings_display();
 });
 
 
