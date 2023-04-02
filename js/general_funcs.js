@@ -2,6 +2,10 @@ function questionPickCounterPlusPlus(questionDetails){
   questionDetails.questionPickCounter++;
 }
 
+function roundCounterPlusPlus(round){
+  round.question_group_counter++;
+}
+
 function findById(id, ary) {
   for (let i in ary) {
     if(ary[i].id == id){
@@ -11,19 +15,19 @@ function findById(id, ary) {
 }
 
 function setQuestionFirstOrSecondPlace(item, questionDetails) {
-  if(questionDetails.questionPickCounter == 1){
+  if(questionDetails.questionPickCounter == 0){
     questionDetails.first_place_item = item;
-  } else if(questionDetails.questionPickCounter == 2){
+  } else if(questionDetails.questionPickCounter == 1){
     questionDetails.second_place_item = item;
   }
 };
 
-function setQuestionThirdPlace(questionItems, questionDetails) {
-  for (let i in questionItems) {
-    if(questionItems[i].wasSel == false){
-      questionDetails.third_place_item = questionItems[i];
-      // for good measure, go ahead and set that the 3rd place item was selected
-      setWasSel(questionItems[i])
+function setQuestionThirdPlace(item_group, questionDetails) {
+  for (let i = 0; i < item_group.length; i++) {
+    if(item_group[i].wasSel == false){
+      questionDetails.third_place_item = item_group[i];
+      setWasSel(item_group[i]);
+      break;
     }
   }
 }
@@ -62,7 +66,7 @@ function shuffle(ary) {
   ary
 }
 
-function set_question_groups_for_round(round, items) {
+function set_question_groups_for_round_one(round, items) {
   shuffle(items);
   for (let i = 0; i < items.length; i+=3) {
     round.question_groups.push( [items[i], items[i + 1], items[i + 2]] );
@@ -77,31 +81,42 @@ function set_question_groups_for_round(round, items) {
 
 function populateQuestionButtons(round) {
   $('.test-question-btn').each(function(index){
-    $(this).html(round.question_groups[round.round_counter][index].name);
-    $(this).attr("data-id", round.question_groups[round.round_counter][index].id);
+    $(this).html(round.question_groups[round.question_group_counter][index].name);
+    $(this).attr("data-id", round.question_groups[round.question_group_counter][index].id);
   });
-  round.round_counter++;
 }
 
 
+function save_question_answer(questionDetails) {
+  questionDetails.first_place_item.weightedVal++;
+  questionDetails.third_place_item.weightedVal--;
+}
 
 
-
-
-/*
-  When the counter is 1, that means the item was the top choice in a test. Increment the weighted value by 1.
-  When the counter is 2, that means the item was the second choice in the test.  Increment by 0, so Noop.
-*/
-function adjustWeightForPick(counter, item) {
-  if(counter == 1){
-    item.weightedVal += 100;
-  } else if(counter == 2){
-    //noop
+function update_value_rankings_display(){
+  $('#valueRankingsDisplay').find('tbody').empty();
+  sortByTestRank(all_items);
+  for (let i in all_items) {
+      $('#valueRankingsDisplay').find('tbody').append("<tr><td>" + all_items[i].name + "</td><td>" + all_items[i].weightedVal + "</td></tr>");
   }
 }
 
 
 function sortByTestRank(ary) {
-    return ary.sort(function(a, b){return a.testRank-b.testRank});
+    return ary.sort(function(a, b){return b.weightedVal-a.weightedVal});
+}
 
+function determineContinueDisplayAtQuestionResults(){
+ // Within rounds 1-3 AND context is not after the 30th question
+ if ( ((round.round_counter == 0) || (round.round_counter == 1) (round.round_counter == 2)) && (round.question_group_counter != 29) ) {
+   $('#test-question-continue').removeClass('d-none');
+ }
+}
+
+function processDisplayQuestionResults(){
+  $('#test-question-prompt').addClass("d-none");
+  $('#test-question-result').removeClass('d-none');
+  displayTestResult(questionDetails, $('#test-question-result-data'));
+  $('#test-question-continue').removeClass('d-none');
+  determineContinueDisplayAtQuestionResults();
 }
