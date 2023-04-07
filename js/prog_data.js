@@ -1,11 +1,16 @@
-const pracVanilla     = {id: 997, weightedVal:0, wasSel: false, name: 'Vanilla Ice Cream'};
-const pracChocolate   = {id: 998, weightedVal:0, wasSel: false, name: 'Chocolate Ice Cream'};
-const pracStrawberry  = {id: 999, weightedVal:0, wasSel: false, name: 'Strawberry Ice Cream'};
-let pracQuestionItems = [pracVanilla, pracChocolate, pracStrawberry];
+const pracVanilla     = {id: 995, weightedVal:0, wasSel: false, name: 'Vanilla Ice Cream'};
+const pracChocolate   = {id: 996, weightedVal:0, wasSel: false, name: 'Chocolate Ice Cream'};
+const pracStrawberry  = {id: 997, weightedVal:0, wasSel: false, name: 'Strawberry Ice Cream'};
+const pracCookiesCream  = {id: 998, weightedVal:0, wasSel: false, name: 'Cookies and Cream Ice Cream'};
+const pracCookieDough  = {id: 999, weightedVal:0, wasSel: false, name: 'Cookie Dough Ice Cream'};
 
-const questionDetails = {questionPickCounter: 0, first_place_item: null, second_place_item: null, third_place_item: null}
+let pracQuestionItems = [pracVanilla, pracChocolate, pracStrawberry, pracCookiesCream, pracCookieDough];
 
-const round = {question_groups: [], question_group_counter: 0, round_counter: 0};
+const questionDetails = {question_pick_counter: 0, first_place_item: null, second_place_item: null, third_place_item: null, fourth_place_item: null, fifth_place_item: null}
+
+const round = {question_groups: [], question_group_index: 0, round_counter: 0};
+
+let total_test_questions_answered = 1;
 
 const item_1 = {id: 1, name: "Acceptance", weightedVal:0, wasSel: false, seen_items: [], is_assigned_question_group: false};
 const item_2 = {id: 2, name: "Authenticity", weightedVal:0, wasSel: false, seen_items: [], is_assigned_question_group: false};
