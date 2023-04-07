@@ -22,26 +22,32 @@
       <h1 class="text-primary">A Test to Rank Your Core Values</h1>
       <p>This test takes about 15 minutes to complete. The format of the questions is simple:</p>
       <ul>
-        <li>Within each question you will be presented with <strong>3</strong> "core value" items. You select your first favorite and then your second favorite.</li>
+        <li>Within each question you will be presented with <strong>5</strong> "core value" items, and you pick your top three favorites.</li>
       </ul>
 
       <div class="card bg-light text-dark">
         <div class="card-header"><h2>Practice Question</h2></div>
         <div class="card-body">
 
-          <h3 class="text-center" id="prac-prompt">Pick Your Favorite From the Listed 3 Items</h3>
+          <h3 class="text-center" id="prac-prompt">Pick Your Favorite From the Listed 5 Items</h3>
 
           <div class="row">
             <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="997">
+              <button type="button" class="btn btn-success prac-question-btn" data-id="995">
                 Vanilla Ice Cream
               </button>
             </div>
             <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="998">Chocolate Ice Cream</button>
+              <button type="button" class="btn btn-success prac-question-btn" data-id="996">Chocolate Ice Cream</button>
             </div>
             <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="999">Strawberry Ice Cream</button>
+              <button type="button" class="btn btn-success prac-question-btn" data-id="997">Strawberry Ice Cream</button>
+            </div>
+            <div class="col prac-btn-wrapper text-center">
+              <button type="button" class="btn btn-success prac-question-btn" data-id="998">Cookies and Cream Ice Cream</button>
+            </div>
+            <div class="col prac-btn-wrapper text-center">
+              <button type="button" class="btn btn-success prac-question-btn" data-id="999">Cookie Dough Ice Cream</button>
             </div>
           </div>
 
@@ -75,12 +81,25 @@
     <div id="coreRankTestWrapper" class="d-none">
       <h1 class="text-primary">A Test to Rank Your Core Values</h1>
       <div class="card bg-light text-dark">
-        <div class="card-header"><h2></h2></div>
+        <div class="card-header">
+          <p>
+            Progress: <span id='progress-num-display'>1</span> out of 76
+          </p>
+          <div class="progress">
+            <div id='test-progress-bar' class="progress-bar bg-success" role="progressbar" style="width: 1%"><span id="progress_percentage_inside_progress_bar"></span></div>
+          </div>
+        </div>
         <div class="card-body">
 
-          <h3 class="text-center" id="test-question-prompt">Pick Your Favorite From the Listed 3 Items</h3>
+          <h3 class="text-center" id="test-question-prompt">Pick Your Favorite From the Listed 5 Items</h3>
 
           <div class="row">
+            <div class="col test-question-item-wrapper text-center">
+              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            </div>
+            <div class="col test-question-item-wrapper text-center">
+              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            </div>
             <div class="col test-question-item-wrapper text-center">
               <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
             </div>
