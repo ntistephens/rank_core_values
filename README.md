@@ -20,7 +20,7 @@ This test is comprised of 6 total rounds. Each round, the core values are put in
 - Round 6: 20 items (4 sets). 10 lowest core values removed (50%) at end of round.
 - Remaining Core Values Not Removed at the End of the Test: **10**.
 
-## Implementation - Further Details.
+## Implementation - Further Details
 During the processs of creating sets of core values for each round, attempts are made to make the sets completely unique between rounds. In other words, attempts are made to try and have every core value within every set to have not yet seen any other core value within each round's set.
 
 The core values are shuffled when creating sets in order to prevent bias. 
