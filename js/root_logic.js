@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-set_question_groups_for_round_one();
+set_question_groups_for_round(all_items);
 
 $('.prac-question-btn').on('click', function(){
   $(this).closest('.prac-btn-wrapper').addClass("d-none");
@@ -36,6 +36,7 @@ $('#prac-restart-question').on('click', function(){
 });
 
 
+// This marks the beginning of the test: Round 1
 $('#beginTest').on('click', function(){
   round.round_counter++;
   resetQuestionDetails(questionDetails);
@@ -46,6 +47,10 @@ $('#beginTest').on('click', function(){
 
 
 $('.test-question-btn').on('click', function(){
+  console.log(".test-question-btn beginning - Round - question_group_index: " + round.question_group_index);
+  console.log(".test-question-btn beginning - Round - round_counter: " + round.round_counter);
+  console.log("Total Question Groups: " + round.question_groups.length);
+
   $(this).closest('.test-question-item-wrapper').addClass("d-none");
   questionDetails.question_pick_counter++;
   var foundItem = findById($(this).attr("data-id"), all_items);
@@ -54,7 +59,7 @@ $('.test-question-btn').on('click', function(){
   if (questionDetails.question_pick_counter == 1) {
     $('#test-question-prompt').text("Now Pick Your Favorite From the Remaining 4 Items");
   } else if (questionDetails.question_pick_counter == 2) {
-    $('#prac-prompt').text("Now Pick Your Favorite From the Remaining 3 Items");
+    $('#test-question-prompt').text("Now Pick Your Favorite From the Remaining 3 Items");
   } else if (questionDetails.question_pick_counter == 3) {
     // no more picks needed for question, so go ahead and hide all (only 4th and 5th item remains at this point)
     $('.test-question-item-wrapper').addClass("d-none");
@@ -62,6 +67,9 @@ $('.test-question-btn').on('click', function(){
     setQuestionLastPlaces(round.question_groups[round.question_group_index], questionDetails);
     processDisplayQuestionResults();
   }
+
+  console.log(".test-question-btn end - Round - question_group_index: " + round.question_group_index);
+  console.log(".test-question-btn end - Round - round_counter: " + round.round_counter);
 });
 
 
@@ -78,6 +86,9 @@ $('#test-question-restart').on('click', function(){
 
 
 $('#test-question-continue').on('click', function(){
+  console.log("test-question-continue beginning: Round - question_group_index: " + round.question_group_index);
+  console.log("test-question-continue beginning: Round - round_counter: " + round.round_counter);
+
   $('#test-question-continue').addClass('d-none');
 
   save_question_answer(questionDetails);
@@ -90,21 +101,29 @@ $('#test-question-continue').on('click', function(){
 
 
   if(round_is_complete()){
+    console.log("Round is complete");
     round.question_groups = []
     round.question_group_index = 0;
+    processQuestionsForEndOfRound();
     round.round_counter++;
-    populate_question_groups_for_next_round();
   }
 
-  populateQuestionButtons(round);
+  if(all_rounds_are_completed()) {
+    // ToDo: Display Test Completion Message
+  } else {
+    populateQuestionButtons(round);
 
-  $('.question-result-data').text("");
-  $('#test-question-result').addClass('d-none');
-  $('.test-question-item-wrapper').removeClass('d-none');
-  $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
-  $('#test-question-prompt').removeClass("d-none");
+    $('.question-result-data').text("");
+    $('#test-question-result').addClass('d-none');
+    $('.test-question-item-wrapper').removeClass('d-none');
+    $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
+    $('#test-question-prompt').removeClass("d-none");
+  }
+
 
   update_value_rankings_display();
+  console.log("test-question-continue end: Round - question_group_index: " + round.question_group_index);
+  console.log("test-question-continue end: Round - round_counter: " + round.round_counter);
 });
 
 
