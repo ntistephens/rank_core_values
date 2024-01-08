@@ -23,6 +23,10 @@
       <p>This test takes about 15 minutes to complete. The format of the questions is simple:</p>
       <ul>
         <li>Within each question you will be presented with <strong>5</strong> "core value" items, and you pick your top three favorites.</li>
+        <li>Don't spend a lot of time on each question. Instead: be quick and go with your gut.</li>
+        <ul>
+          <li>You'll see each core value a few times for validity, so it is ok if you don't get the order exactly right.  </li>
+        </ul>
       </ul>
 
       <div class="card bg-light text-dark">
@@ -32,24 +36,25 @@
           <h3 class="text-center" id="prac-prompt">Pick Your Favorite From the Listed 5 Items</h3>
 
           <div class="row">
-            <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="995">
+            <div class="col-4 p-1 prac-btn-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success prac-question-btn" data-id="995">
                 Vanilla Ice Cream
               </button>
             </div>
-            <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="996">Chocolate Ice Cream</button>
+            <div class="col-4 p-1 prac-btn-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success prac-question-btn" data-id="996">Chocolate Ice Cream</button>
             </div>
-            <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="997">Strawberry Ice Cream</button>
+            <div class="col-4 p-1 prac-btn-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success prac-question-btn" data-id="997">Strawberry Ice Cream</button>
             </div>
-            <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="998">Cookies and Cream Ice Cream</button>
+            <div class="col-4 p-1 prac-btn-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success prac-question-btn" data-id="998">Cookies and Cream Ice Cream</button>
             </div>
-            <div class="col prac-btn-wrapper text-center">
-              <button type="button" class="btn btn-success prac-question-btn" data-id="999">Cookie Dough Ice Cream</button>
+            <div class="col-4 p-1 prac-btn-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success prac-question-btn" data-id="999">Cookie Dough Ice Cream</button>
             </div>
           </div>
+
 
           <div class="d-none" id="prac-result">
             <p>
@@ -94,20 +99,20 @@
           <h3 class="text-center" id="test-question-prompt">Pick Your Favorite From the Listed 5 Items</h3>
 
           <div class="row">
-            <div class="col test-question-item-wrapper text-center">
-              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            <div class="col-4 p-1 test-question-item-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success test-question-btn" data-id=""></button>
             </div>
-            <div class="col test-question-item-wrapper text-center">
-              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            <div class="col-4 p-1 test-question-item-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success test-question-btn" data-id=""></button>
             </div>
-            <div class="col test-question-item-wrapper text-center">
-              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            <div class="col-4 p-1 test-question-item-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success test-question-btn" data-id=""></button>
             </div>
-            <div class="col test-question-item-wrapper text-center">
-              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            <div class="col-4 p-1 test-question-item-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success test-question-btn" data-id=""></button>
             </div>
-            <div class="col test-question-item-wrapper text-center">
-              <button type="button" class="btn btn-success test-question-btn" data-id=""></button>
+            <div class="col-4 p-1 test-question-item-wrapper text-center">
+              <button type="button" class="w-100 btn btn-success test-question-btn" data-id=""></button>
             </div>
           </div>
 
@@ -140,6 +145,8 @@
           <tr>
             <th scope="col">Value</th>
             <th scope="col">Score</th>
+            <th scope="col">Removed</th>
+            <th scope="col">Round Removed</th>
           </tr>
         </thead>
         <tbody>
