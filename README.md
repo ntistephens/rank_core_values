@@ -7,7 +7,7 @@ The intention of this project is to help people discover their top core values i
 The subject of core values was presented to me within a live, online [Mindful Self-Compassion Course](https://centerformsc.org/). The 90-item list of core values used in this project was shared within that course.  
 
 ## Implementation - Overview
-This test is comprised of 6 total rounds. Each round, the core values are put into sets of five., and the user is presented with the task of ranking the core values of each set. 
+This test is comprised of 6 total rounds. Each round, the core values are put into sets of five, and the user is presented with the task of ranking the core values of each set. 
 - For each set, the user only ranks the top three of the five core values. First place gets a weighted score of +2, second place gets a weighted score of +1, Third place gets a weighted score of 0, and the remaining two core values get a weighted score of -1.
 - Throughtout the process of the rounds, the core values accumulate a weighted score. After the end of rounds 3, 4, 5, and 6: a number of the lowest ranking core values are removed.
 
