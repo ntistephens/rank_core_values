@@ -20,12 +20,14 @@
 
     <div id="welcome-practice">
       <h1 class="text-primary">A Test to Rank Your Core Values</h1>
-      <p>This test takes about 15 minutes to complete. The format of the questions is simple:</p>
+      <small><a href="https://github.com/ntistephens/rank_core_values/tree/main">Attribution and Details on Implementation</a></small>
+
+      <p>This test takes about 25 minutes to complete. The format of the questions is simple:</p>
       <ul>
         <li>Within each question you will be presented with <strong>5</strong> "core value" items, and you pick your top three favorites.</li>
         <li>Don't spend a lot of time on each question. Instead: be quick and go with your gut.</li>
         <ul>
-          <li>You'll see each core value a few times for validity, so it is ok if you don't get the order exactly right.  </li>
+          <li>You'll see each core value a few times for validity, so it is ok if you don't get the ordering perfect on every question.</li>
         </ul>
       </ul>
 
@@ -137,15 +139,41 @@
 </svg>
           </button>
 
+          <button type="button" class="d-none btn btn-success btn-sm" id="test-finish-btn">
+            Complete and View Results
+          </button>
+
         </div>
       </div>
 
-      <table class="table table-sm table-striped" id="valueRankingsDisplay">
+      <div class="d-none" id="endOfTestMessage">
+        <div class="alert alert-success">
+          <strong>Below Are Your Results.</strong> Your top core values display at the top.<br>
+          To further validate your top core values, you can let some time pass and take the test again.<br>
+          Pay particular attention to the top few core values and ask yourself: "What things can I do each day to further honor my top core values?"
+        </div>
+      </div>
+
+      <div class="text-primary d-none" id="topTenValuesTableResultMsg">Top 10 Core Values</div>
+      <table class="table table-sm table-striped d-none" id="valueRankingsDisplay">
         <thead>
           <tr>
             <th scope="col">Value</th>
             <th scope="col">Score</th>
-            <th scope="col">Removed</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+
+      <br>
+
+      <div class="text-primary d-none" id="fullTableResultsMsg">Full Test Results</div>
+      <table class="table table-sm table-striped d-none" id="valueRankingsDisplayFull">
+        <thead>
+          <tr>
+            <th scope="col">Value</th>
+            <th scope="col">Score</th>
             <th scope="col">Round Removed</th>
           </tr>
         </thead>
@@ -157,7 +185,6 @@
 
 
     </div> <!-- coreRankTestWrapper -->
-
 
 
   </div> <!-- container -->
