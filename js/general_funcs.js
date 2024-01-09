@@ -77,9 +77,9 @@ function set_question_groups_for_round(items_ary){
 
 function populateQuestionButtons(round) {
   $('.test-question-btn').each(function(index){
-    console.log("index: " + index);
-    console.log("question group index: " + round.question_group_index);
-    console.log(round);
+    // console.log("index: " + index);
+    // console.log("question group index: " + round.question_group_index);
+    // console.log(round);
     $(this).html(round.question_groups[round.question_group_index][index].name);
     $(this).attr("data-id", round.question_groups[round.question_group_index][index].id);
   });
@@ -106,10 +106,29 @@ function save_question_answer(questionDetails) {
 
 
 function update_value_rankings_display(){
-  $('#valueRankingsDisplay').find('tbody').empty();
   sortByTestRank(all_items);
-  for (let i in all_items) {
-      $('#valueRankingsDisplay').find('tbody').append("<tr><td>" + all_items[i].name + "</td><td>" + all_items[i].weightedVal + "</td><td>" +  all_items[i].removed +  "</td><td>" + display_round_removed(all_items[i]) + "</td></tr>");
+
+  if(all_rounds_are_completed()) {
+    $('#topTenValuesTableResultMsg').removeClass('d-none');
+
+    $('#valueRankingsDisplay').removeClass('d-none');
+    $('#valueRankingsDisplay').find('tbody').empty();
+    for (let i in all_items) {
+        if(all_items[i].round_removed == null) {
+          $('#valueRankingsDisplay').find('tbody').append("<tr><td>" + all_items[i].name + "</td><td>" + all_items[i].weightedVal + "</td></tr>");
+        }
+    }
+  }
+
+  if(debugging_flag == true || all_rounds_are_completed()) {
+    $('#fullTableResultsMsg').removeClass('d-none');
+
+    $('#valueRankingsDisplayFull').removeClass('d-none');
+    $('#valueRankingsDisplayFull').find('tbody').empty();
+
+    for (let i in all_items) {
+      $('#valueRankingsDisplayFull').find('tbody').append("<tr><td>" + all_items[i].name + "</td><td>" + all_items[i].weightedVal + "</td><td>" + display_round_removed(all_items[i]) + "</td></tr>");
+    }
   }
 }
 
@@ -125,8 +144,11 @@ function processDisplayQuestionResults(){
   $('#test-question-prompt').addClass("d-none");
   $('#test-question-result').removeClass('d-none');
   displayTestResult(questionDetails, $('#test-question-result-data'));
-  $('#test-question-continue').removeClass('d-none');
-  $('#test-question-continue').removeClass('d-none');
+  if(round.round_counter == 6 &&  round.question_group_index == 3){
+    $('#test-finish-btn').removeClass('d-none');
+  } else{
+    $('#test-question-continue').removeClass('d-none');
+  }
 }
 
 
@@ -157,14 +179,14 @@ function all_rounds_are_completed() {
 // It removes the hardcoded amount of items, given what round has just ended
 // As long as it isn't the end of Round 6 (becuase end of round 6 is the end of the entire test) It also popuulates the question groups for the next round
 function processQuestionsForEndOfRound(){
-  console.log("Working on processQuestionsForEndOfRound");
-  console.log(all_items);
+  // console.log("Working on processQuestionsForEndOfRound");
+  // console.log(all_items);
   if(round.round_counter == 1){
-    console.log("processQuestionsForEndOfRound: it is round 1");
+    // console.log("processQuestionsForEndOfRound: it is round 1");
     // This is simple: No state updating for items removed
     set_question_groups_for_round(all_items);
   } else if(round.round_counter == 2) {
-    console.log("processQuestionsForEndOfRound: it is round 2");
+    // console.log("processQuestionsForEndOfRound: it is round 2");
     // This is simple: No state updating for items removed
     set_question_groups_for_round(all_items);
   } else if(round.round_counter == 3) {
