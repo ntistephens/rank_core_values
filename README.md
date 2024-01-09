@@ -25,7 +25,7 @@ During the processs of creating sets of core values for each round, attempts are
 
 The core values are shuffled when creating sets in order to prevent bias. 
 
-The spirit of this test was to make it fa. If the user would like additional validity in the results, the user is invited to take the test multiple times.  T
+The spirit of this test was to make it both quick and valid. If the user would like additional validity in the results, the user is invited to take the test multiple times.  T
 
 ## Attributions 
 Thanks to the instructor of my live, online mindful self compassion course: [Joel Grow, PhD](https://www.joelgrow.com/) for his encouragement when I shared the idea of building this tool. 
