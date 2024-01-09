@@ -75,7 +75,7 @@ $('#test-question-restart').on('click', function(){
   $('.question-result-data').text("");
   $('#test-question-result').addClass('d-none');
   $('.test-question-item-wrapper').removeClass('d-none');
-  $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
+  $('#test-question-prompt').text("Pick Your Favorite From the Listed 5 Items");
   $('#test-question-prompt').removeClass("d-none");
 });
 
@@ -106,7 +106,7 @@ $('#test-question-continue').on('click', function(){
   $('.question-result-data').text("");
   $('#test-question-result').addClass('d-none');
   $('.test-question-item-wrapper').removeClass('d-none');
-  $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
+  $('#test-question-prompt').text("Pick Your Favorite From the Listed 5 Items");
   $('#test-question-prompt').removeClass("d-none");
 
   update_value_rankings_display();
