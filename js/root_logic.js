@@ -47,9 +47,6 @@ $('#beginTest').on('click', function(){
 
 
 $('.test-question-btn').on('click', function(){
-  console.log(".test-question-btn beginning - Round - question_group_index: " + round.question_group_index);
-  console.log(".test-question-btn beginning - Round - round_counter: " + round.round_counter);
-  console.log("Total Question Groups: " + round.question_groups.length);
 
   $(this).closest('.test-question-item-wrapper').addClass("d-none");
   questionDetails.question_pick_counter++;
@@ -67,14 +64,12 @@ $('.test-question-btn').on('click', function(){
     setQuestionLastPlaces(round.question_groups[round.question_group_index], questionDetails);
     processDisplayQuestionResults();
   }
-
-  console.log(".test-question-btn end - Round - question_group_index: " + round.question_group_index);
-  console.log(".test-question-btn end - Round - round_counter: " + round.round_counter);
 });
 
 
 $('#test-question-restart').on('click', function(){
   $('#test-question-continue').addClass('d-none');
+  $('#test-finish-btn').addClass('d-none');
   resetQuestionDetails(questionDetails);
   resetWasSelOnQuestionItems(round.question_groups[round.question_group_index]);
   $('.question-result-data').text("");
@@ -86,44 +81,50 @@ $('#test-question-restart').on('click', function(){
 
 
 $('#test-question-continue').on('click', function(){
-  console.log("test-question-continue beginning: Round - question_group_index: " + round.question_group_index);
-  console.log("test-question-continue beginning: Round - round_counter: " + round.round_counter);
-
   $('#test-question-continue').addClass('d-none');
 
   save_question_answer(questionDetails);
-  update_progress_bar();
 
   resetQuestionDetails(questionDetails);
   resetWasSelOnQuestionItems(round.question_groups[round.question_group_index]);
 
+
   round.question_group_index++;
 
 
+
   if(round_is_complete()){
-    console.log("Round is complete");
     round.question_groups = []
     round.question_group_index = 0;
     processQuestionsForEndOfRound();
     round.round_counter++;
   }
 
-  if(all_rounds_are_completed()) {
-    // ToDo: Display Test Completion Message
-  } else {
-    populateQuestionButtons(round);
+  update_progress_bar();
+  populateQuestionButtons(round);
 
-    $('.question-result-data').text("");
-    $('#test-question-result').addClass('d-none');
-    $('.test-question-item-wrapper').removeClass('d-none');
-    $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
-    $('#test-question-prompt').removeClass("d-none");
-  }
-
+  $('.question-result-data').text("");
+  $('#test-question-result').addClass('d-none');
+  $('.test-question-item-wrapper').removeClass('d-none');
+  $('#test-question-prompt').text("Pick Your Favorite From the Listed 3 Items");
+  $('#test-question-prompt').removeClass("d-none");
 
   update_value_rankings_display();
-  console.log("test-question-continue end: Round - question_group_index: " + round.question_group_index);
-  console.log("test-question-continue end: Round - round_counter: " + round.round_counter);
+});
+
+
+$('#test-finish-btn').on('click', function(){
+  $('#test-finish-btn').addClass('d-none');
+
+  save_question_answer(questionDetails);
+  processQuestionsForEndOfRound();
+  $('#endOfTestMessage').removeClass('d-none');
+
+  $('.question-result-data').text("");
+  $('#test-question-result').addClass('d-none');
+
+  round.round_counter++;
+  update_value_rankings_display();
 });
 
 
