@@ -184,14 +184,4 @@ $('#test-finish-btn').on('click', function(){
 });
 
 
-
-
-
-
-
-
-
-
-
-
 }); //jquery document.ready
