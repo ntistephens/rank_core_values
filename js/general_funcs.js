@@ -365,8 +365,6 @@ function processDisplayQuestionResults(){
   $('#test-question-prompt').addClass("d-none");
   $('#test-question-result').removeClass('d-none');
   displayTestResult(questionDetails, $('#test-question-result-data'));
-  console.log(round.round_counter);
-  console.log(round.question_group_index);
   if(round.round_counter == 5 && round.question_group_index == 1){
     $('#test-finish-btn').removeClass('d-none');
   } else{
@@ -507,7 +505,6 @@ function processQuestionsForEndOfRound(){
     }
     set_question_groups_for_round(items_after_removal);
   } else if(round.round_counter == 5) {
-    console.log("It got to round_counter 5");
     // Must set removed field on item to true, and also set round_removed field
     // Round 6 We simply round to removing the bottom 10 items to allow the user to focus on the top 10
     var remaining_items = [];
